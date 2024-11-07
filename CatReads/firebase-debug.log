@@ -1,0 +1,65 @@
+[debug] [2024-11-07T18:44:19.419Z] ----------------------------------------------------------------------
+[debug] [2024-11-07T18:44:19.422Z] Command:       E:\Applications\NodeJs\node.exe C:\Users\aayus\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-11-07T18:44:19.422Z] CLI Version:   13.24.0
+[debug] [2024-11-07T18:44:19.422Z] Platform:      win32
+[debug] [2024-11-07T18:44:19.423Z] Node Version:  v20.12.2
+[debug] [2024-11-07T18:44:19.423Z] Time:          Thu Nov 07 2024 18:44:19 GMT+0000 (Greenwich Mean Time)
+[debug] [2024-11-07T18:44:19.423Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-11-07T18:44:19.496Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-11-07T18:44:19.496Z] > authorizing via signed-in user (singlaaayush280309@gmail.com)
+[debug] [2024-11-07T18:44:19.496Z] [iam] checking project catreads-44dab for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-11-07T18:44:19.497Z] Checked if tokens are valid: true, expires at: 1731008211518
+[debug] [2024-11-07T18:44:19.498Z] Checked if tokens are valid: true, expires at: 1731008211518
+[debug] [2024-11-07T18:44:19.499Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/catreads-44dab:testIamPermissions [none]
+[debug] [2024-11-07T18:44:19.499Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/catreads-44dab:testIamPermissions x-goog-quota-user=projects/catreads-44dab
+[debug] [2024-11-07T18:44:19.499Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/catreads-44dab:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-11-07T18:44:21.073Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/catreads-44dab:testIamPermissions 200
+[debug] [2024-11-07T18:44:21.074Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/catreads-44dab:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-11-07T18:44:21.075Z] Checked if tokens are valid: true, expires at: 1731008211518
+[debug] [2024-11-07T18:44:21.076Z] Checked if tokens are valid: true, expires at: 1731008211518
+[debug] [2024-11-07T18:44:21.076Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/catreads-44dab [none]
+[debug] [2024-11-07T18:44:21.562Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/catreads-44dab 200
+[debug] [2024-11-07T18:44:21.562Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/catreads-44dab {"projectId":"catreads-44dab","projectNumber":"934226840576","displayName":"CatReads","name":"projects/catreads-44dab","resources":{"hostingSite":"catreads-44dab"},"state":"ACTIVE","etag":"1_5af855a2-0585-4435-8a9c-0188219be93f"}
+[debug] [2024-11-07T18:44:26.267Z] Checked if tokens are valid: true, expires at: 1731008211518
+[debug] [2024-11-07T18:44:26.268Z] Checked if tokens are valid: true, expires at: 1731008211518
+[debug] [2024-11-07T18:44:26.269Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/catreads-44dab/sites pageToken=&pageSize=10
+[debug] [2024-11-07T18:44:27.378Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/catreads-44dab/sites 200
+[debug] [2024-11-07T18:44:27.379Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/catreads-44dab/sites {"sites":[{"name":"projects/catreads-44dab/sites/catreads-44dab","defaultUrl":"https://catreads-44dab.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-11-07T18:44:27.380Z] Checked if tokens are valid: true, expires at: 1731008211518
+[debug] [2024-11-07T18:44:27.381Z] Checked if tokens are valid: true, expires at: 1731008211518
+[debug] [2024-11-07T18:44:27.381Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/catreads-44dab/sites 
+[debug] [2024-11-07T18:44:27.820Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/catreads-44dab/sites 200
+[debug] [2024-11-07T18:44:27.820Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/catreads-44dab/sites {"sites":[{"name":"projects/catreads-44dab/sites/catreads-44dab","defaultUrl":"https://catreads-44dab.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2024-11-07T18:44:27.821Z] Checked if tokens are valid: true, expires at: 1731008211518
+[debug] [2024-11-07T18:44:27.821Z] Checked if tokens are valid: true, expires at: 1731008211518
+[debug] [2024-11-07T18:44:27.821Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/catreads-44dab/webApps/-/config [none]
+[debug] [2024-11-07T18:44:28.977Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/catreads-44dab/webApps/-/config 200
+[debug] [2024-11-07T18:44:28.977Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/catreads-44dab/webApps/-/config {"projectId":"catreads-44dab","appId":"1:934226840576:web:9ea279385be541de355ce5","storageBucket":"catreads-44dab.firebasestorage.app","apiKey":"AIzaSyDV4e-6XPtsMNMbUl7zOn2X2uPICCu4JkE","authDomain":"catreads-44dab.firebaseapp.com","messagingSenderId":"934226840576","measurementId":"G-GJRC27JB8S"}
+[info] 
+   Thank you for trying our experimental support for SvelteKit on Firebase Hosting.
+   While this integration is maintained by Googlers it is not a supported Firebase product.
+   Issues filed on GitHub will be addressed on a best-effort basis by maintainers and other community members.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/frameworks-overview
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-11-07T18:44:50.174Z] Error: The following routes were marked as prerenderable, but were not prerendered because they were not found while crawling your app:
+  - /books/[book]
+
+See https://svelte.dev/docs/kit/page-options#prerender-troubleshooting for info on how to solve this
+    at prerender (file:///F:/Programming/Projects/CatReads_Ecom/CatReads/node_modules/@sveltejs/kit/src/core/postbuild/prerender.js:511:9)
+    at async MessagePort.<anonymous> (file:///F:/Programming/Projects/CatReads_Ecom/CatReads/node_modules/@sveltejs/kit/src/utils/fork.js:23:16)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2024-11-07T18:44:50.400Z] [vite-plugin-sveltekit-compile] Failed with code 1
+    at Worker.<anonymous> (file:///F:/Programming/Projects/CatReads_Ecom/CatReads/node_modules/@sveltejs/kit/src/utils/fork.js:65:13)
+    at Worker.emit (node:events:518:28)
+    at Worker.emit (node:domain:488:12)
+    at [kOnExit] (node:internal/worker:315:10)
+    at Worker.<computed>.onexit (node:internal/worker:229:20)
+[error] 
+[error] Error: An unexpected error has occurred.
