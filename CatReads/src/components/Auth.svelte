@@ -1,9 +1,15 @@
 <script>
     import left_img from '$lib/images/signup_left.png';
     import {authHandlers, authStore} from "../stores/authStore.js";
+    import {onMount} from "svelte";
+    import {goto} from "$app/navigation";
 
-    export let register;
+    let register = $props();
 
+    $effect(()=>{
+        if (!$authStore.isLoading && $authStore.currentUser !== null) goto('/')
+    })
+    
     const handlesubmit = async (provider = undefined) => {
         if (!details.email || !details.pass) {
             if (provider === 'google') {
@@ -14,7 +20,7 @@
                 }
             }
             if ($authStore.currentUser) {
-                window.location.href='/'
+                window.location.href = '/'
             }
             return
         }
@@ -36,7 +42,7 @@
         }
 
         if ($authStore.currentUser) {
-            window.location.href='/'
+            window.location.href = '/'
         }
     }
 
@@ -68,7 +74,8 @@
             <input type="password" name="signup_pass" id="signupPass" placeholder="Password" bind:value={details.pass}
                    class="outline-none text-black w-full py-2 px-3 font-semibold rounded-lg">
 
-            <button class="bg-neutral-300 w-full text-black my-3 text-lg py-2 rounded-lg font-bold hover:text-white hover:bg-neutral-950 transition-all" on:click={handlesubmit}>
+            <button class="bg-neutral-300 w-full text-black my-3 text-lg py-2 rounded-lg font-bold hover:text-white hover:bg-neutral-950 transition-all"
+                    on:click={handlesubmit}>
                 {#if register}
                     SignUp
                 {:else}
@@ -83,7 +90,8 @@
             <hr class="w-full">
         </div>
 
-        <button class="bg-blue-600 w-full text-2xl py-3 rounded-xl my-3 font-bold hover:bg-blue-700 transition-all hover:text-yellow-400" on:click={()=>{handlesubmit('google')}}>
+        <button class="bg-blue-600 w-full text-2xl py-3 rounded-xl my-3 font-bold hover:bg-blue-700 transition-all hover:text-yellow-400"
+                on:click={()=>{handlesubmit('google')}}>
             {#if register}
                 SignUp with Google
             {:else}

@@ -8,23 +8,20 @@
         photoURL: undefined,
     })
 
-    let asd = setInterval(() => {
-        if ($authStore.isLoading === false) {
-            user = $authStore.currentUser
-            if ($authStore.currentUser === null) {
-                if (browser) goto('/api/v1/auth/login/')
-            }
-            clearInterval(asd)
+    $effect(async () => {
+        user = await $authStore.currentUser
+        if ($authStore.currentUser === null) {
+            if (browser) goto('/api/v1/auth/login/')
         }
-    }, 10)
+    })
 </script>
 
-<div class="bg-orange-200 w-[100vw] h-full flex">
-    <button class="fixed w-32 h-16 text-center bg-orange-600 translate-y-5 translate-x-5 rounded-lg text-white hover:bg-orange-700 font-bold text-lg transition-all" onclick={goto('/')}>Home Page</button>
+<div class="bg-red-200 w-[100vw] h-full flex">
+    <button class="fixed w-32 h-16 text-center bg-red-600 translate-y-5 translate-x-5 rounded-lg text-white hover:bg-red-700 font-bold text-lg transition-all" onclick={()=>goto('/')}>Home Page</button>
 
     {#key user}
-        <div class="h-full w-1/2 border-r-2 border-orange-500 flex justify-center flex-col px-10 items-center">
-            <div class="h-32 w-32 rounded-full overflow-clip border-4 border-orange-500 flex justify-center items-center">
+        <div class="h-full w-1/2 border-r-2 border-red-500 flex justify-center flex-col px-10 items-center">
+            <div class="h-32 w-32 rounded-full overflow-clip border-4 border-red-500 flex justify-center items-center">
                 <img src={user ? user.photoURL : ""} class="w-full h-full" alt=""/>
             </div>
 
@@ -50,14 +47,14 @@
         </div>
     {/key}
 
-    <div class="h-full w-1/2 border-l-2 border-orange-500 flex flex-col px-5 items-center justify-center">
+    <div class="h-full w-1/2 border-l-2 border-red-500 flex flex-col px-5 items-center justify-center">
         <button class="w-full text-3xl bg-blue-200 rounded-2xl p-5 font-extrabold hover:bg-blue-300 transition-all" onclick={()=>goto('/api/v1/account/user-profile/cart/')}>Your
             Cart <br> <span class="text-sm font-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, repudiandae!</span>
         </button>
         <button class="w-full text-3xl bg-amber-400 rounded-2xl my-5 p-5 font-extrabold hover:bg-amber-500 transition-all">
             Your Orders <br> <span class="text-sm font-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, repudiandae!</span>
         </button>
-        <button class="w-full text-3xl bg-orange-400 rounded-2xl p-5 font-extrabold hover:bg-orange-500 transition-all">
+        <button class="w-full text-3xl bg-red-400 rounded-2xl p-5 font-extrabold hover:bg-red-500 transition-all">
             Ordering History <br> <span class="text-sm font-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, repudiandae!</span>
         </button>
     </div>

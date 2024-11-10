@@ -1,5 +1,5 @@
 import {db} from "$lib/firebase/firebase.client.js";
-import {getDocs, collection, addDoc, where, query, updateDoc, doc, increment, getDoc} from "firebase/firestore";
+import {getDocs, collection, addDoc, where, query, updateDoc, doc, increment, getDoc, deleteDoc} from "firebase/firestore";
 
 export const getBooks = async () => {
     const querySnapshot = await getDocs(collection(db, "Books"));
@@ -51,6 +51,13 @@ const checkItemInCart = async (uid, bookId) => {
     }
 }
 
+export const removeItem = async (uid, bookId) => {
+    let item = await checkItemInCart(uid, bookId)
+    if (!item) return 0
+
+    await deleteDoc(doc(db, "Carts", item.id))
+}
+
 export const checkQuantity = async (uid, bookId) => {
     let item = await checkItemInCart(uid, bookId)
     if (!item) return 0
@@ -59,7 +66,6 @@ export const checkQuantity = async (uid, bookId) => {
 
 export const getCartItems = async (uid) => {
     let items;
-    console.log(uid)
 
     try {
         items = []

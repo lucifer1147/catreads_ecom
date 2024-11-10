@@ -1,56 +1,55 @@
 <script>
-    import {getCartItems} from "../../../../../../stores/collectionStore.js";
-    import {authStore} from "../../../../../../stores/authStore.js";
-    import {doc, getDoc} from "firebase/firestore";
-    import {db} from "$lib/firebase/firebase.client.js";
-
     import CartItem from "../../../../../../components/CartItem.svelte";
-    import {onMount} from "svelte";
+
     import {goto} from "$app/navigation";
+    import {onDestroy, onMount} from "svelte";
+    import {onSnapshot, query, collection, where, getDoc, doc} from "firebase/firestore"
 
-    let books = [];
+    import {db} from '$lib/firebase/firebase.client.js'
+    import {authStore} from "../../../../../../stores/authStore.js";
 
-    onMount(async () => {
-        if ($authStore.isLoading === false) {
-            let uid = $authStore.currentUser.uid;
-            await cartItemsToBooks(await getCartItems(uid));
-        }
-    });
+    let unsubscribe;
+    let bookIds = $state([]);
+    let listnerAdded = false
 
-    const cartItemsToBooks = async (items) => {
-        Array.from(items).forEach(async (val) => {
-            let bookId = val.itemId
-            let book = {}
-
-            const docRef = doc(db, 'Books', bookId)
-            await getDoc(docRef).then(docSnap => {
-                if (docSnap.exists()) {
-                    book = {id: bookId, ...docSnap.data()}
-                }
+    $effect(() => {
+        if ($authStore.currentUser && listnerAdded === false) {
+            console.log('ayo')
+            const q = query(collection(db, "Carts"), where("uid", "==", $authStore.currentUser.uid))
+            unsubscribe = onSnapshot(q, (querySnap) => {
+                querySnap.forEach(async (qDoc)=>{
+                    console.log('called')
+                    let id = qDoc.data().itemId
+                    if (!bookIds.includes(id)) bookIds = [...bookIds, id]
+                })
             })
+            listnerAdded = true
+        }
+    })
 
-            books = [...books, book]
-        })
-    }
+    onDestroy(() => {
+        unsubscribe && unsubscribe()
+    })
 
 </script>
 
-<div class="bg-orange-200 min-w-[99.55vw] min-h-full p-10">
+<div class="bg-red-200 min-w-[99.55vw] min-h-full p-10">
     <h1 class="text-5xl text-center font-black">Your Cart</h1>
-    {#key books}
-        {#if books.length > 0}
-            {#each books as book}
-                <CartItem {book}/>
+    {#key bookIds}
+        {#if bookIds.length > 0}
+            {#each bookIds as book}
+                <CartItem bookId={book} uid={$authStore.currentUser.uid}/>
             {/each}
         {:else}
             <p>Loading your cart items...</p>
         {/if}
     {/key}
     <div class="mt-5 flex justify-between">
-        <button class="w-1/3 h-1/2 bg-orange-400 border-amber-600 rounded-lg text-white font-bold hover:bg-orange-500 transition-all text-lg py-4" onclick={()=>goto('/api/v1/account/user-profile')}>
+        <button class="w-1/3 h-1/2 bg-red-400 border-amber-600 rounded-lg text-white font-bold hover:bg-red-500 transition-all text-lg py-4"
+                onclick={()=>goto('/api/v1/account/user-profile')}>
             Go Back
         </button>
-        <button class="w-1/3 h-1/2 bg-orange-400 border-amber-600 rounded-lg text-white font-bold hover:bg-orange-500 transition-all text-lg py-4">
+        <button class="w-1/3 h-1/2 bg-red-400 border-amber-600 rounded-lg text-white font-bold hover:bg-red-500 transition-all text-lg py-4">
             Checkout
         </button>
     </div>
