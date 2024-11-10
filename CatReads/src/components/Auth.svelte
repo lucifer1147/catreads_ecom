@@ -4,7 +4,7 @@
     import {onMount} from "svelte";
     import {goto} from "$app/navigation";
 
-    let register = $props();
+    let {register} = $props();
 
     $effect(()=>{
         if (!$authStore.isLoading && $authStore.currentUser !== null) goto('/')
@@ -55,7 +55,7 @@
 <div class="flex bg-neutral-900 h-1/2 w-2/3 rounded-2xl text-white shadow-black shadow-2xl">
     <div class="h-full w-1/2 rounded-l-2xl"
          style="background-image: url('{left_img}'); background-repeat: no-repeat; background-position: center; background-size: cover">
-        <div class="absolute w-1/3 h-1/2 rounded-l-2xl bg-teal-500 bg-opacity-40"></div>
+        <div class="absolute w-1/3 h-1/2 rounded-l-2xl bg-red-500 bg-opacity-40"></div>
     </div>
     <div class="h-full w-1/2 px-10 items-center">
         <h1 class="text-5xl font-serif text-center mt-10 mb-4 w-full font-bold">
@@ -101,11 +101,11 @@
 
         {#if register}
             <p class="w-full text-center text-sm">Already have an account? <a href="/api/v1/auth/login/"
-                                                                              class="text-teal-400 hover:text-teal-500">Login
+                                                                              class="text-fuchsia-500 hover:text-fuchsia-700">Login
                 Here!</a></p>
         {:else}
             <p class="w-full text-center text-sm">Don't have an account? <a href="/api/v1/auth/signup/"
-                                                                            class="text-teal-400 hover:text-teal-500">SignUp
+                                                                            class="text-fuchsia-500 hover:text-fuchsia-700">SignUp
                 Here!</a></p>
         {/if}
     </div>
